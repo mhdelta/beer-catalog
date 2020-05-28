@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "anime-catalog-client": {
+    "beer-catalog-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/anime-catalog-client",
+            "outputPath": "dist/beer-catalog-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "anime-catalog-client:build"
+            "browserTarget": "beer-catalog-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "anime-catalog-client:build:production"
+              "browserTarget": "beer-catalog-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "anime-catalog-client:build"
+            "browserTarget": "beer-catalog-client:build"
           }
         },
         "test": {
@@ -114,15 +114,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "anime-catalog-client:serve"
+            "devServerTarget": "beer-catalog-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "anime-catalog-client:serve:production"
+              "devServerTarget": "beer-catalog-client:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "anime-catalog-client"
+  "defaultProject": "beer-catalog-client"
 }
