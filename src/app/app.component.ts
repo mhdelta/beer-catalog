@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BeerService } from './services/beer.service';
 import { Beer } from './models/beer.model';
-import { Observable, ReplaySubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,28 +13,40 @@ import { switchMap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   title = 'beer-catalog-client';
 
-  searchTerm$ = new ReplaySubject<string>();
+
+  searchString: string;
+  searchStream$ = new Subject<string>();
+
   results$: Observable<Beer[]>;
   data: Beer[];
 
   constructor(
     private beerService: BeerService
   ) {}
-  ngOnInit() {
-    this.results$ = this.searchTerm$.pipe(
-      switchMap(query => this.beerService.getData(query))
-    );
-    this.search({target: {value: 'red'}});
 
+  ngOnInit() {
+    this.searchStream$.pipe(
+      debounceTime(500),
+      filter(x => x !== null && x !== '')
+    ).subscribe(
+      term => this.search(term)
+    );
   }
 
-  search(event) {
-    this.beerService.getData(event.target.value).subscribe(
+  inputEvent(term) {
+    this.searchStream$.next(term);
+  }
+
+  search(term) {
+    this.beerService.getData(term).subscribe(
       res => {
         this.data = res;
-        console.log(this.data);
       }
-    );
+      );
+    }
+
+  ngOnDestroy() {
+    this.searchStream$.unsubscribe();
   }
 }
 

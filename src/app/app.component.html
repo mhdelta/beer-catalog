@@ -1,10 +1,17 @@
 <div class="row">
-  <div *ngFor="let item of data" class="col-md-6">
+  <div class="col-md-6" style="display: block;">
+    <label style="margin: .4rem;">Search beers!</label>
+    <input type="text" name="search-box" id="search-box" [(ngModel)]="searchString" (ngModelChange)="inputEvent(searchString)">
+  </div>
+</div>
+<br>
+<div class="row">
+  <div *ngFor="let item of data; let i = index" class="col-md-6">
     <div class="ticketBox" data-ticket-price="50000">
       <div class="inactiveStatus"></div>
 
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-9">
           <div class="ticket-name">
             {{item.name}}
             <span><small><b>First brewed: </b></small> {{item.first_brewed}}<br></span>
@@ -13,18 +20,21 @@
           </div>
         </div>
 
-        <div class="col-xs-6">
-          <div class="ticket-control" class="float-right">
+        <div class="col-xs-3">
+          <div class="ticket-control" >
             <img [src]="item.image_url" alt="" srcset="" style="max-width: 100px; max-height: 100px;">
           </div>
         </div>
       </div>
 
-
       <div class="ticket-description">
-        <p><strong>{{item.tagline}}</strong><br>{{item.description}}</p>
+          <a href="#List-{{ i }}" data-toggle="collapse"><strong>{{item.tagline}}</strong></a>
+          <div id="List-{{ i }}" class="collapse">
+            <ul style="list-style: none">
+              <li><p>{{item.description}}</p></li>
+            </ul>
+          </div>
       </div>
-
     </div>
   </div>
 </div>
