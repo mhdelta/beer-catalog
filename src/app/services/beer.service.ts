@@ -9,7 +9,12 @@ export class BeerService {
   constructor(
     private http: HttpClient
   ) {}
+  
+  getFiltered(query) {
 
+    const params = new HttpParams().set(query["filter"], query["param"]);
+    return this.http.get<Beer[]>('https://api.punkapi.com/v2/beers', {params});
+  }
   getData(query: string = ' ') {
     const params = new HttpParams().set('beer_name', query);
     return this.http.get<Beer[]>('https://api.punkapi.com/v2/beers', {params});

@@ -1,8 +1,24 @@
 <div class="row">
-  <div class="col-md-6" style="display: block;">
+  <div class="col-md-4" style="display: block;">
     <label style="margin: .4rem;">Search beers!</label>
     <input type="text" name="search-box" id="search-box" [(ngModel)]="searchString" (ngModelChange)="inputEvent(searchString)">
   </div>
+  <div class="col-md-4" style="display: block;">
+    <label style="margin: .4rem;" >Filter</label>
+    <select [(ngModel)]="filtertype">
+      <option disabled selected value> -- select an option -- </option>
+      <option value="0">ABV</option>
+      <option value="1">IBU</option>
+      <option value="2">EBC</option>
+    </select>
+  </div>
+  <select *ngIf="filtertype==0" [(ngModel)]="selectedrange">
+    <option *ngFor="let r of abvranges" [value]="r">{{r}}</option>
+  </select>
+  <select (click)="ibufilter()" *ngIf="filtertype==1" [(ngModel)]="selectedrange">
+    <option *ngFor="let r of ibunames" [value]="r">{{r}}</option>
+  </select>
+
 </div>
 <br>
 <div class="row">
