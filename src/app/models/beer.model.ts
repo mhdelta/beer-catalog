@@ -5,11 +5,26 @@ export interface Beer {
   first_brewed: string;
   description: string;
   image_url: string;
+  /**
+   * Alcohol by volume
+   * @type {number}
+   * @memberof Beer
+   */
   abv: number;
+  /**
+   *International bittering unit
+   * @type {number}
+   * @memberof Beer
+   */
   ibu: number;
   target_fg: number;
   target_og: number;
   ebc: number;
+  /**
+   * Standard reference method
+   * @type {number}
+   * @memberof Beer
+   */
   srm: number;
   ph: number;
   attenuation_level: number;
