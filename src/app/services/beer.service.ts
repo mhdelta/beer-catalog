@@ -14,6 +14,7 @@ export class BeerService {
   ) {}
 
   formatDate(date){
+    console.log(date);
     const year = date.split('-')[0];
     const month = date.split('-')[1];
     return month + '-' + year;

@@ -26,8 +26,15 @@
           <div class="ticket-name">
             {{item.name}}
             <span><small><b>First brewed: </b></small> {{item.first_brewed}}<br></span>
-            <span><small><b>abv: </b></small> {{item.abv}}%<br></span>
-            <span><small><b>ebc: </b></small> {{item.ebc}}<br></span>
+            <span><small><b>Alcohol by volume: </b></small> {{item.abv}}%<br></span>
+            <span><small><b>International bittering unit: </b></small> {{item.ibu}}<br></span>
+            <span><small><b>Yeast: </b></small> {{item.ingredients.yeast}}<br></span>
+            <span><small><b>Standard Reference Method: </b></small> {{getSRMString(item.srm)}}</span>
+            <span><small><b>European Brewery Convention: </b></small>
+              <svg width="20" height="20">
+                <rect width="20" height="20" [style]="getEbcColor(item.ebc)" />
+              </svg>
+              <br></span>
           </div>
         </div>
 
